@@ -1,8 +1,11 @@
 package com.sj.dalimi.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class TestVo {
     
     private String id;
