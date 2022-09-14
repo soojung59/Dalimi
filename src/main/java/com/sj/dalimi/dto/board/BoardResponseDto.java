@@ -4,7 +4,7 @@ import com.sj.dalimi.entity.board.Board;
 
 import lombok.Getter;
 
-@Getter
+// @Getter
 public class BoardResponseDto {
     private String id;
     private String name;
