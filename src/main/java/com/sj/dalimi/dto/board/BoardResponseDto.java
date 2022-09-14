@@ -9,9 +9,12 @@ public class BoardResponseDto {
     private String id;
     private String name;
 
-    public void BoardRequestDto(Board entity){
+    public BoardResponseDto(Board board) {
         this.id = entity.getId();
         this.name = entity.getName();
+    }
+
+    public void BoardRequestDto(Board entity){
     }
 
     @Override

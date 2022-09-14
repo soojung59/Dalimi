@@ -20,5 +20,10 @@ public class BoardService {
     public String save (BoardRequestDto boardSaveDto){
         return boardrepository.save(boardSaveDto.toEntity()).getId();
     }
+
+
+    public BoardResponseDto findById(String id){
+        return new BoardResponseDto(boardrepository.findById(id).get());
+    }
     
 }
