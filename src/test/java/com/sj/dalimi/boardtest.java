@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.sj.dalimi.dto.board.BoardRequestDto;
-import com.sj.dalimi.service.BoardService;
-
 @SpringBootTest
 class boardtest {
 

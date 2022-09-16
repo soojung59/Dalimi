@@ -1,4 +1,4 @@
-package com.sj.dalimi.controller;
+package com.sj.dalimi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
