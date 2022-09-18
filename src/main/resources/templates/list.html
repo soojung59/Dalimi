@@ -3,12 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
 <!-- HEADER -->
 <div th:insert="common/header.html" id="header"></div>
 
 <a th:href="@{/post}">글쓰기</a>
+
+<table >
+    <tr>
+        <th class = "one wide"> 번호</th>
+        <th class = "ten wide"> 글제목</th>
+        <th class = "two wide"> 작성자</th>
+        <th class = "three wide"> 작성일</th>
+    </tr>
+
+<tbody>
+<tr th:each ="runner : ${runnerList}">
+    <td>
+        <span th:text = "${runner.runner_id}"></span>
+    </td>
+    <td>
+        <a th:href="@{'/post/' + ${runner.runner_id}}">
+            <span th:text = "${runner.email}"></span>
+        </a>
+    </td>
+    <td>
+        <span th:text="${runner.nickname}"></span>
+    </td>
+    <td>
+<!--        <span th:text = "${#temporals.format(runner.createdDate,'yyyy-MM-dd HH:mm')}"></span>-->
+    </td>
+</tr>
+</tbody>
+</table>
 
 <!-- FOOTER -->
 <div th:insert="common/footer.html" id="footer"></div>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action = "@{'/post/edit/' + ${runnerDto.runner_id}}" method="post">
+    <input type = "hidden" name ="_method"  value="put"/>
+    <input type = "hidden" name ="runner_id" th:value="${runnerDto.runner_id}"/>
+
+    이메일 : <input type = "text" name = "email" th:value = "${runnerDto.email"> <br>
+    닉네임 : <input type = "text" name = "nickname" th:value = "${runnerDto.nickname"> <br>
+
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>

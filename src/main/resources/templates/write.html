@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
 <form  action="/post" method="post">
-  제목 : <input type="text" name="title"> <br>
-  작성자 : <input type="text" name="writer"> <br>
-  <textarea name="content"></textarea><br>
+  email : <input type="text" name="runner_id"> <br>
+  email : <input type="text" name="email"> <br>
+  level : <input type="text" name="level"> <br>
+  nickname : <input type="text" name="nickname"> <br>
+  password : <input type="text" name="password"> <br>
+  running : <input type="text" name="running"> <br>
+  time : <input type="text" name="time"> <br>
+  withdrawal_date : <input type="text" name="withdrawal_date"> <br>
+
 
   <input type="submit" value="등록">
 </form>
