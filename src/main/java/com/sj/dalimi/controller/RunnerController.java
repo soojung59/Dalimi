@@ -24,8 +24,8 @@ public class RunnerController {
     }
 
     @GetMapping("/post/edit/{no}")
-    public String edit(@PathVariable("no") Long runner_id, Model model){
-        RunnerDto runnerDto = runnerService.getPost(runner_id);
+    public String edit(@PathVariable("no") Long no, Model model){
+        RunnerDto runnerDto = runnerService.getPost(no);
 
         model.addAttribute("runnerDto",runnerDto);
         return "update.html";
@@ -36,6 +36,13 @@ public class RunnerController {
         runnerService.savePost(runnerDto);
         return "redirect:/";
     }
+
+    @DeleteMapping("/post/{no}")
+    public String delete(@PathVariable("no") Long no){
+        runnerService.deletePost(no);
+        return "redirect:/";
+    }
+
 
     /*게시글 목록*/
     @GetMapping("/")
