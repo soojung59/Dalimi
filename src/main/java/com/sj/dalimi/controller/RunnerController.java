@@ -45,12 +45,12 @@ public class RunnerController {
 
 
     /*게시글 목록*/
-    @GetMapping("/")
-    public String list(Model model){
-        List<RunnerDto> runnerList = runnerService.getRunnerList();
-        model.addAttribute("runnerList", runnerList);
-        return "list.html";
-    }
+//    @GetMapping("/")
+//    public String list(Model model){
+//        List<RunnerDto> runnerList = runnerService.getRunnerList();
+//        model.addAttribute("runnerList", runnerList);
+//        return "list.html";
+//    }
 
     @GetMapping("/post")
     public String write(){
