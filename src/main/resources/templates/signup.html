@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,10 +8,21 @@
 <h1>회원 가입</h1>
 <hr>
 
-<form th:action="@{/user/signup}" method="post">
-  <input type="text" name="email" placeholder="이메일을 입력">
-  <input type="password" name="password" placeholder="비밀번호">
-  <button type="submit">가입하기</button>
+<form th:action="@{/user/signup}" method="post" modelAttribute="memberDto">
+    <div>
+         <input type="text" name="email" th:value="${memberDto.email}" placeholder="이메일을 입력" >
+        <span th:text="${valid_email}"></span>
+    </div>
+    <div>
+        <input type="text" name="nickname" th:value="${memberDto.nickname}" laceholder="닉네임" >
+      <span th:text="${valid_nickname}"></span>
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="비밀번호">
+         <span th:text="${valid_password}"></span>
+    </div>
+
+    <button >가입하기</button>
 </form>
 </body>
 </html>

@@ -17,6 +17,27 @@ public class RunnerService{
     private RunnerRepository runnerRepository;
 
     @Transactional
+    public List<RunnerDto> searchPosts(String keyword){
+        List<RunnerEntity> runnerEntities = runnerRepository.findByEmailContaining(keyword);
+        List<RunnerDto> runnerDtoList = new ArrayList<>();
+
+        if(runnerEntities.isEmpty()) return runnerDtoList;
+
+        for(RunnerEntity runnerEntity : runnerEntities){
+            runnerDtoList.add(this.convertEntityToDto(runnerEntity));
+        }
+        return runnerDtoList;
+    }
+
+    private RunnerDto convertEntityToDto(RunnerEntity runnerEntity){
+        return RunnerDto.builder()
+                .runner_id(runnerEntity.getRunner_id())
+                .email(runnerEntity.getEmail())
+                .nickname(runnerEntity.getNickname())
+                .build();
+    }
+
+    @Transactional
     public RunnerDto getPost(Long runner_id){
         Optional<RunnerEntity> runnerEntityWrapper = runnerRepository.findById(runner_id);
         RunnerEntity runnerEntity = runnerEntityWrapper.get();

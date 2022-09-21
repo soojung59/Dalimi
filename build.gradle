@@ -38,6 +38,8 @@ dependencies {
 	//mysql
 	implementation 'mysql:mysql-connector-java'
 
+	//validation
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 
 }
 

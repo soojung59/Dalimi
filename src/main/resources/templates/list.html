@@ -10,7 +10,12 @@
 <div th:insert="common/header.html" id="header"></div>
 
 <a th:href="@{/post}">글쓰기</a>
-
+<form action="/search" method="get">
+    <div>
+        <input name="keyword" type="text" placeholder="검색을 해볼까요?">
+    </div>
+    <button>검색</button>
+</form>
 <table >
     <tr>
         <th class = "one wide"> 번호</th>
