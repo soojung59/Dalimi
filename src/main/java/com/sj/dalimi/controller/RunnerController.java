@@ -52,7 +52,7 @@ public class RunnerController {
         return "list.html";
     }
 
-    @GetMapping("/board/search")
+    @GetMapping("/search")
     public String search(@RequestParam(value = "keyword") String keyword, Model model){
         List<RunnerDto> runnerDtoList = runnerService.searchPosts(keyword);
 
