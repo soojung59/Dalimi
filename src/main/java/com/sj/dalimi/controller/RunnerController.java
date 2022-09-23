@@ -45,12 +45,12 @@ public class RunnerController {
 
 
     /*게시글 목록*/
-    @GetMapping("/")
-    public String list(Model model){
-        List<RunnerDto> runnerList = runnerService.getRunnerList();
-        model.addAttribute("runnerList", runnerList);
-        return "list.html";
-    }
+//    @GetMapping("/")
+//    public String list(Model model){
+//        List<RunnerDto> runnerList = runnerService.getRunnerList();
+//        model.addAttribute("runnerList", runnerList);
+//        return "list.html";
+//    }
 
     @GetMapping("/search")
     public String search(@RequestParam(value = "keyword") String keyword, Model model){
@@ -69,8 +69,4 @@ public class RunnerController {
         return  "redirect:/";
     }
 
-    @RequestMapping(value = "/hi")
-    public String test(){
-        return "index.html";
-    }
 }

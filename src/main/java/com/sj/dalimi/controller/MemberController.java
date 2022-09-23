@@ -1,27 +1,37 @@
 package com.sj.dalimi.controller;
 
 import com.sj.dalimi.dto.MemberDto;
+import com.sj.dalimi.dto.RunnerDto;
 import com.sj.dalimi.service.MemberService;
+import com.sj.dalimi.service.RunnerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @AllArgsConstructor
 public class MemberController {
     private MemberService memberService;
+    private final RunnerService runnerService;
 
-//    @GetMapping("/")
-//    public String index(){
-//        return "/index";
-//
-//    }
+    @GetMapping("/")
+    public String index(Model model, @RequestParam(value = "page", defaultValue = "1")Integer pageNum){
+        List<RunnerDto> runnerList = runnerService.getRunnerList(pageNum);
+        Integer[] pageList = runnerService.getPageList(pageNum);
+
+        model.addAttribute("pageList", pageList);
+        model.addAttribute("runnerList", runnerList);
+        return "/index";
+
+    }
 
     @GetMapping("/user/signup")
     public String dispSignup(MemberDto memberDto){

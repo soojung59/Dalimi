@@ -12,5 +12,48 @@
 <a sec:authorize = "isAnonymous()" th:href="@{/user/signup}">회원가입</a>
 <a sec:authorize = "hasRole('ROLE_MEMBER')" th:href="@{/user/info}">내정보</a>
 <a sec:authorize = "hasRole('ROLE_ADMIN')" th:href="@{/admin}">어드민</a>
+
+<!-- HEADER -->
+<div th:insert="common/header.html" id="header"></div>
+
+<a th:href="@{/post}">글쓰기</a>
+<form action="/search" method="get">
+    <div>
+        <input name="keyword" type="text" placeholder="검색을 해볼까요?">
+    </div>
+    <button>검색</button>
+</form>
+<table >
+    <tr>
+        <th class = "one wide"> 번호</th>
+        <th class = "ten wide"> 글제목</th>
+        <th class = "two wide"> 작성자</th>
+        <th class = "three wide"> 작성일</th>
+    </tr>
+
+    <tbody>
+    <tr th:each ="runner : ${runnerList}">
+        <td>
+            <span th:text = "${runner.runner_id}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/post/' + ${runner.runner_id}}">
+                <span th:text = "${runner.email}"></span>
+            </a>
+        </td>
+        <td>
+            <span th:text="${runner.nickname}"></span>
+        </td>
+        <td>
+<!--                    <span th:text = "${#temporals.format(runner.createdDate,'yyyy-MM-dd HH:mm')}"></span>-->
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span th:each="pageNum: ${pageList}" th:inline="text">
+        <a th:href="@{'/?page='+${pageNum}}">[[#{pageNum}]]</a>
+    </span>
+</div>
 </body>
 </html>
