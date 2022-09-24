@@ -4,6 +4,7 @@ import com.sj.dalimi.domain.entity.RunnerEntity;
 import com.sj.dalimi.dto.RunnerDto;
 import com.sj.dalimi.domain.repository.RunnerRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 @AllArgsConstructor // repository 주입하기 위해 사용
 @Service
+@Slf4j
 public class RunnerService{
     private RunnerRepository runnerRepository;
     private static final int BLOCK_PAGE_NUM_COUNT= 5;

@@ -6,9 +6,6 @@
   <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
-<!--<http>-->
-<!--  <csrf disabled="true" /> &lt;!&ndash; true 시 비활성화. 기본값은 false &ndash;&gt;-->
-<!--</http>-->
 <form  action="/post" method="post">
 
   <input type="hidden" th:name = "${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -20,8 +17,6 @@
   running : <input type="text" name="running"> <br>
   time : <input type="text" name="time"> <br>
   withdrawal_date : <input type="text" name="withdrawal_date"> <br>
-
-
   <input type="submit" value="등록" >
 </form>
 </body>
