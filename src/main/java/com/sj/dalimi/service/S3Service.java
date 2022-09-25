@@ -14,11 +14,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 @NoArgsConstructor
 public class S3Service {
     private AmazonS3 s3Client;
+    public static final String CLOUD_FRONT_DOMAIN_NAME = "danzabn941bf7.cloudfront.net";
 
     @Value("${cloud.aws.credentials.accessKey}")
     private String accessKey;
@@ -41,11 +44,21 @@ public class S3Service {
                 .build();
     }
 
-    public String upload(MultipartFile file)throws IOException{
-        String filename = file.getOriginalFilename();
+    public String upload(String currentFilePath , MultipartFile file)throws IOException{
+
+        SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
+        String filename = file.getOriginalFilename() + "-" + date.format(new Date());
+
+        if("".equals(currentFilePath) == false && currentFilePath != null){
+            boolean isExistObject = s3Client.doesObjectExist(bucket,currentFilePath);
+
+            if(isExistObject == true){
+                s3Client.deleteObject(bucket,currentFilePath);
+            }
+        }
         s3Client.putObject(new PutObjectRequest(bucket, filename, file.getInputStream(),null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
-        return s3Client.getUrl(bucket,filename).toString();
+        return filename;
 
     }
 

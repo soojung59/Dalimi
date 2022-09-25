@@ -1,19 +1,1 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" th:href="@{/css/table.css}">
-</head>
-<body>
-
-  <form action="@{/photo}" method="post"enctype="multipart/form-data" >
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-<!--    id : <input type="text" name = "id"> <br>-->
-    제목 : <input type="text" name = "title"> <br>
-    파일: <input type="file" name="file"><br>
-    <input type="submit" value="등록" >
-  </form>
-
-</body>
-</html>
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"><head>  <meta charset="UTF-8">  <title>Title</title>  <link rel="stylesheet" th:href="@{/css/table.css}"></head><body>  <form th:action="@{/photo}" method="post" enctype="multipart/form-data" >    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />    제목 : <input type="text" name = "title"> <br>    파일: <input type="file" name="file"><br>    <input type="submit" value="등록" >  </form>  <hr>  <div th:each="gallery:${galleryList}">    <div style="margin-bottom: 30px">      <p th:inline="text"> 제목 : [[${gallery.title}]]</p>      <img th:src="${gallery.imgFullPath}" style="width: 500px; height: 300px;">    </div>    <form th:action="@{/photo}" method="post" enctype="multipart/form-data">      <input type="hidden" name="id" th:value = "${gallery.id}">      <input type="hidden" name="title" th:value = "${gallery.title}">      <input type="hidden" name="filepath" th:value = "${gallery.filePath}">      파일: <input type="file" name="file"> <br>      <button>수정하기</button>    </form>    <hr>  </div></body></html>

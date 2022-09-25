@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-@Slf4j
 @Controller
 @AllArgsConstructor //view 페이지가 필요없는  api응답에 어울리는 어노테이션 (autowired 비권장, bean주입)
 public class RunnerController {
@@ -25,18 +24,21 @@ public class RunnerController {
     private final GalleryService galleryService;
 
     @GetMapping("/photo")
-    public String dispWrite(){
-        return "photo.html" ;
+    public String dispWrite(Model model){
+        List<GalleryDto> galleryDtoList = galleryService.getList();
+
+        model.addAttribute("galleryList", galleryDtoList);
+
+        return "/photo" ;
     }
     @PostMapping("/photo")
     public String execWrite(GalleryDto galleryDto, MultipartFile file) throws IOException {
-        String imgPath = s3Service.upload(file);
+        String imgPath = s3Service.upload(galleryDto.getFilePath(),file);
         galleryDto.setFilePath(imgPath);
         galleryService.savePost(galleryDto);
-        log.info(galleryDto.toString());
-        log.info(imgPath);
-        return "/photo";
+        return "redirect:/photo";
     }
+
 
     @GetMapping("/post")
     public String write(){
