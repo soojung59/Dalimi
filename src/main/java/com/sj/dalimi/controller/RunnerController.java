@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -33,7 +34,8 @@ public class RunnerController {
     }
     @PostMapping("/photo")
     public String execWrite(GalleryDto galleryDto, MultipartFile file) throws IOException {
-        String imgPath = s3Service.upload(galleryDto.getFilePath(),file);
+        //파일 이름 중복없이 다시 설정할 것!
+        String imgPath = s3Service.upload(LocalDate.now()+galleryDto.getTitle(),file);
         galleryDto.setFilePath(imgPath);
         galleryService.savePost(galleryDto);
         return "redirect:/photo";

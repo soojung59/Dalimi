@@ -46,19 +46,24 @@ public class S3Service {
 
     public String upload(String currentFilePath , MultipartFile file)throws IOException{
 
+        // 고유한 key 값을 갖기위해 현재 시간을 postfix로 붙여줌
         SimpleDateFormat date = new SimpleDateFormat("yyyymmddHHmmss");
-        String filename = file.getOriginalFilename() + "-" + date.format(new Date());
+        String fileName = currentFilePath ;
+//        + "-" + date.format(new Date());
+        // key가 존재하면 기존 파일은 삭제
+        if ("".equals(currentFilePath) == false && currentFilePath != null) {
+            boolean isExistObject = s3Client.doesObjectExist(bucket, currentFilePath);
 
-        if("".equals(currentFilePath) == false && currentFilePath != null){
-            boolean isExistObject = s3Client.doesObjectExist(bucket,currentFilePath);
-
-            if(isExistObject == true){
-                s3Client.deleteObject(bucket,currentFilePath);
+            if (isExistObject == true) {
+                s3Client.deleteObject(bucket, currentFilePath);
             }
         }
-        s3Client.putObject(new PutObjectRequest(bucket, filename, file.getInputStream(),null)
+
+        // 파일 업로드
+        s3Client.putObject(new PutObjectRequest(bucket, fileName, file.getInputStream(), null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
-        return filename;
+
+        return fileName;
 
     }
 
