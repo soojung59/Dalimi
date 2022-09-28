@@ -5,6 +5,7 @@ import com.sj.dalimi.dto.RunnerDto;
 import com.sj.dalimi.service.MemberService;
 import com.sj.dalimi.service.RunnerService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,11 +23,11 @@ public class MemberController {
     private MemberService memberService;
     private final RunnerService runnerService;
 
+
     @GetMapping("/")
     public String index(Model model, @RequestParam(value = "page", defaultValue = "1")Integer pageNum){
         List<RunnerDto> runnerList = runnerService.getRunnerList(pageNum);
         Integer[] pageList = runnerService.getPageList(pageNum);
-
         model.addAttribute("pageList", pageList);
         model.addAttribute("runnerList", runnerList);
         return "/index";
