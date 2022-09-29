@@ -1,4 +1,4 @@
-package com.sj.dalimi.signuplogin.domain;
+package com.sj.runner.signuplogin.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

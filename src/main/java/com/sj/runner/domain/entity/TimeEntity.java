@@ -1,4 +1,4 @@
-package com.sj.dalimi.domain.entity;
+package com.sj.runner.domain.entity;
 
 
 import lombok.Getter;

@@ -1,9 +1,9 @@
-package com.sj.dalimi.service;
+package com.sj.runner.service;
 
-import com.sj.dalimi.domain.entity.MemberEntity;
-import com.sj.dalimi.domain.repository.MemberRepository;
-import com.sj.dalimi.dto.MemberDto;
-import com.sj.dalimi.signuplogin.domain.Role;
+import com.sj.runner.domain.entity.MemberEntity;
+import com.sj.runner.domain.repository.MemberRepository;
+import com.sj.runner.dto.MemberDto;
+import com.sj.runner.signuplogin.domain.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,7 +31,7 @@ public class MemberService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
 
-        return memberRepository.save(memberDto.toEntity()).getId();
+        return memberRepository.save(memberDto.toEntity()).getMember_id();
     }
 
     @Override

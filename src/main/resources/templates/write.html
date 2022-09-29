@@ -9,14 +9,17 @@
 <form  action="/post" method="post">
 
   <input type="hidden" th:name = "${_csrf.parameterName}" th:value="${_csrf.token}"/>
-  id : <input type="text" name="runner_id"> <br>
-  email : <input type="text" name="email"> <br>
-  level : <input type="text" name="level"> <br>
-  nickname : <input type="text" name="nickname"> <br>
-  password : <input type="text" name="password"> <br>
-  running : <input type="text" name="running"> <br>
+  member_id : <input type="hidden" name="member_id"> <br>
+
+  record_id : <input type="text" name="record_id"> <br>
+  start_latitude : <input type="text" name="start_latitude"> <br>
+  start_hardness : <input type="text" name="start_hardness"> <br>
+  arrival_latitude : <input type="text" name="arrival_latitude"> <br>
   time : <input type="text" name="time"> <br>
-  withdrawal_date : <input type="text" name="withdrawal_date"> <br>
+  memo : <input type="text" name="memo"> <br>
+  heart : <input type="text" name="heart"> <br>
+  level : <input type="text" name="level"> <br>
+  view : <input type="text" name="view"> <br>
   <input type="submit" value="등록" >
 </form>
 </body>

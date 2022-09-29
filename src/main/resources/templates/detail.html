@@ -5,15 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-<h2 th:text = "${runnerDto.nickname}"></h2>
-<p th:text = "${runnerDto.email}"></p>
+<h2 th:text = "${recordDto.start_latitude}"></h2>
+<p th:text = "${recordDto.start_hardness}"></p>
+<p th:text = "${recordDto.start_hardness}"></p>
+<p th:text = "${recordDto.arrival_latitude}"></p>
+<p th:text = "${recordDto.arrival_hardness}"></p>
+<p th:text = "${recordDto.time}"></p>
+<p th:text = "${recordDto.memo}"></p>
+
 
 <div>
-  <a th:href="@{'/post/edit/' + ${runnerDto.runner_id}}">
+  <a th:href="@{'/post/edit/' + ${recordDto.record_id}}">
     <button>수정</button>
   </a>
 
-  <form id = "delete-form" th:action ="@{'/post/'+${runnerDto.runner_id}}" method="post">
+  <form id = "delete-form" th:action ="@{'/post/'+${recordDto.record_id}}" method="post">
     <input type = "hidden" name = "_method" value="delete"/>
     <button id = "delete-btn">삭제</button>
   </form>
@@ -21,7 +27,7 @@
 
 <script th:inline = "javascript">
   /*<![CDATA[*/
-  var runnerDto = /*[[${runnerDto}]]*/ "";
+  var recordDto = /*[[${recordDto}]]*/ "";
   /*]]>*/
 </script>
 

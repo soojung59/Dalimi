@@ -1,6 +1,6 @@
-package com.sj.dalimi.domain.repository;
+package com.sj.runner.domain.repository;
 
-import com.sj.dalimi.domain.entity.MemberEntity;
+import com.sj.runner.domain.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,14 +1,11 @@
-package com.sj.dalimi.service;
+package com.sj.runner.service;
 
-import com.sj.dalimi.domain.entity.GalleryEntity;
-import com.sj.dalimi.domain.repository.GalleryRepository;
-import com.sj.dalimi.dto.GalleryDto;
+import com.sj.runner.domain.entity.GalleryEntity;
+import com.sj.runner.domain.repository.GalleryRepository;
+import com.sj.runner.dto.GalleryDto;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 

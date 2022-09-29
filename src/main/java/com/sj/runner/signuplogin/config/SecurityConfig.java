@@ -1,6 +1,6 @@
-package com.sj.dalimi.signuplogin.config;
+package com.sj.runner.signuplogin.config;
 
-import com.sj.dalimi.service.MemberService;
+import com.sj.runner.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

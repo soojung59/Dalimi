@@ -5,17 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action = "@{'/post/edit/' + ${runnerDto.runner_id}}" method="post">
+<form th:action = "@{'/post/edit/' + ${recordDto.runner_id}}" method="post">
     <input type = "hidden" name ="_method"  value="put"/>
-    <input type = "hidden" name ="runner_id" th:value="${runnerDto.runner_id}"/>
+    <input type = "hidden" name ="runner_id" th:value="${recordDto.runner_id}"/>
 
-    이메일 : <input type = "text" name = "email" th:value = "${runnerDto.email}"> <br>
-    level : <input type="text" name="level" th:value = "${runnerDto.level}"> <br>
-    nickname : <input type="text" name="nickname" th:value = "${runnerDto.nickname}"> <br>
-    password : <input type="text" name="password" th:value = "${runnerDto.password}"> <br>
-    running : <input type="text" name="running" th:value = "${runnerDto.running}"> <br>
-    time : <input type="text" name="time" th:value = "${runnerDto.time}"> <br>
-    withdrawal_date : <input type="text" name="withdrawal_date" th:value = "${runnerDto.withdrawal_date}"> <br>
+    이메일 : <input type = "text" name = "email" th:value = "${recordDto.email}"> <br>
+    level : <input type="text" name="level" th:value = "${recordDto.level}"> <br>
+    nickname : <input type="text" name="nickname" th:value = "${recordDto.nickname}"> <br>
+    password : <input type="text" name="password" th:value = "${recordDto.password}"> <br>
+    running : <input type="text" name="running" th:value = "${recordDto.running}"> <br>
+    time : <input type="text" name="time" th:value = "${recordDto.time}"> <br>
+    withdrawal_date : <input type="text" name="withdrawal_date" th:value = "${recordDto.withdrawal_date}"> <br>
 
 
     <input type="submit" value="수정">

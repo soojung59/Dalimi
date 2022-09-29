@@ -1,4 +1,4 @@
-package com.sj.dalimi.service;
+package com.sj.runner.service;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Service
 @NoArgsConstructor

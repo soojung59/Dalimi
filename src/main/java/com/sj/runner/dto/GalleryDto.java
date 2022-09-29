@@ -1,6 +1,6 @@
-package com.sj.dalimi.dto;
+package com.sj.runner.dto;
 
-import com.sj.dalimi.domain.entity.GalleryEntity;
+import com.sj.runner.domain.entity.GalleryEntity;
 import lombok.*;
 
 @Getter
