@@ -16,7 +16,7 @@ public class RecordDto {
     private Long start_hardness;
     private Long arrival_latitude;
     private Long arrival_hardness;
-    private LocalDateTime time;
+    private String time;
     private String memo;
     private int heart;
     private int level;
@@ -44,7 +44,7 @@ public class RecordDto {
     }
 
     @Builder
-    public RecordDto(Long record_id, Long member_id, Long start_latitude, Long start_hardness, Long arrival_latitude,Long arrival_hardness, LocalDateTime time, String memo, int level){
+    public RecordDto(Long record_id, Long member_id, Long start_latitude, Long start_hardness, Long arrival_latitude,Long arrival_hardness, String time, String memo, int level){
         this.record_id = record_id;
         this.member_id = member_id;
         this.start_latitude = start_latitude;

@@ -30,13 +30,15 @@ public class RecordController {
 
         return "/photo" ;
     }
-    @PostMapping("/photo")
-    public String execWrite(GalleryDto galleryDto, MultipartFile file) throws IOException {
+    @PostMapping("/write")
+    public String execWrite(RecordDto recordDto,GalleryDto galleryDto, MultipartFile file) throws IOException {
         //파일 이름 중복없이 다시 설정할 것!
         String imgPath = s3Service.upload(LocalDate.now()+galleryDto.getTitle(),file);
         galleryDto.setFilePath(imgPath);
         galleryService.savePost(galleryDto);
-        return "redirect:/photo";
+
+        recordService.savePost(recordDto);
+        return "redirect:/";
     }
 
 

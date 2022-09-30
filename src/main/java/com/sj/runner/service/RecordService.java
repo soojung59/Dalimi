@@ -57,7 +57,7 @@ public class RecordService {
 
     @Transactional
     public List<RecordDto> searchPosts(String keyword){
-        List<RecordEntity> runnerEntities = recordRepository.findByEmailContaining(keyword);
+        List<RecordEntity> runnerEntities = recordRepository.findByMemoContaining(keyword);
         List<RecordDto> recordDtoList = new ArrayList<>();
 
         if(runnerEntities.isEmpty()) return recordDtoList;

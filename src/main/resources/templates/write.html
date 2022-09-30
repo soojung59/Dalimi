@@ -6,15 +6,20 @@
   <link rel="stylesheet" th:href="@{/css/table.css}">
 </head>
 <body>
-<form  action="/post" method="post">
+<form  action="/write" method="post">
 
   <input type="hidden" th:name = "${_csrf.parameterName}" th:value="${_csrf.token}"/>
-  member_id : <input type="hidden" name="member_id"> <br>
-
-  record_id : <input type="text" name="record_id"> <br>
+  record_id : <input type="hidden" name="record_id"> <br>
+<!--  <form action="/photo" method="post" enctype="multipart/form-data" >-->
+<!--    제목 : <input type="text" name = "title"> <br>-->
+<!--    파일: <input type="file" name="file"><br>-->
+<!--    <input type="submit" value="등록" >-->
+<!--  </form>-->
+  member_id : <input type="text" name="member_id"> <br>
   start_latitude : <input type="text" name="start_latitude"> <br>
   start_hardness : <input type="text" name="start_hardness"> <br>
   arrival_latitude : <input type="text" name="arrival_latitude"> <br>
+  arrival_latitude : <input type="text" name="arrival_hardness"> <br>
   time : <input type="text" name="time"> <br>
   memo : <input type="text" name="memo"> <br>
   heart : <input type="text" name="heart"> <br>
@@ -22,5 +27,6 @@
   view : <input type="text" name="view"> <br>
   <input type="submit" value="등록" >
 </form>
+
 </body>
 </html>

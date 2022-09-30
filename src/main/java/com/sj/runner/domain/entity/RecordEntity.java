@@ -30,7 +30,7 @@ public class RecordEntity extends TimeEntity{
     private Long arrival_hardness;
 
     @Column(length = 10, nullable = false)
-    private LocalDateTime time;
+    private String time;
 
     @Column(length = 10, nullable = false)
     private String memo;
@@ -46,7 +46,7 @@ public class RecordEntity extends TimeEntity{
 
 
     @Builder
-    public RecordEntity(Long record_id, Long member_id, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, LocalDateTime time, String memo, int level , int heart , int view){
+    public RecordEntity(Long record_id, Long member_id, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
         this.record_id = record_id;
         this.member_id = member_id;
         this.start_latitude = start_latitude;
