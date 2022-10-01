@@ -1,9 +1,12 @@
 package com.sj.runner.domain.entity;
 
+import com.sj.runner.dto.MemberDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Table(name = "record")
@@ -14,8 +17,9 @@ public class RecordEntity extends TimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long record_id;
 
-    @Column(length = 10, nullable = false)
-    private Long member_id;
+    @ManyToOne
+    @JoinColumn
+    private MemberEntity member;
 
     @Column(length = 10, nullable = false)
     private Long start_latitude;
@@ -46,9 +50,9 @@ public class RecordEntity extends TimeEntity{
 
 
     @Builder
-    public RecordEntity(Long record_id, Long member_id, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
+    public RecordEntity(Long record_id, MemberEntity member, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
         this.record_id = record_id;
-        this.member_id = member_id;
+        this.member = member;
         this.start_latitude = start_latitude;
         this.start_hardness = start_hardness;
         this.arrival_latitude = arrival_latitude;

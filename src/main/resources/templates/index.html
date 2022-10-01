@@ -34,15 +34,15 @@
     <tbody>
     <tr th:each ="runner : ${runnerList}">
         <td>
-            <span th:text = "${runner.runner_id}"></span>
+            <span th:text = "${runner.record_id}"></span>
         </td>
         <td>
-            <a th:href="@{'/post/' + ${runner.runner_id}}">
-                <span th:text = "${runner.email}"></span>
+            <a th:href="@{'/post/' + ${runner.record_id}}">
+                <span th:text = "${runner.level}"></span>
             </a>
         </td>
         <td>
-            <span th:text="${runner.nickname}"></span>
+            <span th:text="${runner.memo}"></span>
         </td>
         <td>
 <!--                    <span th:text = "${#temporals.format(runner.createdDate,'yyyy-MM-dd HH:mm')}"></span>-->

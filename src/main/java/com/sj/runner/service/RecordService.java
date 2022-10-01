@@ -82,8 +82,8 @@ public class RecordService {
     }
 
     @Transactional
-    public RecordDto getPost(Long runner_id){
-        Optional<RecordEntity> runnerEntityWrapper = recordRepository.findById(runner_id);
+    public RecordDto getPost(Long record_id){
+        Optional<RecordEntity> runnerEntityWrapper = recordRepository.findById(record_id);
         RecordEntity recordEntity = runnerEntityWrapper.get();
 
         RecordDto recordDto = RecordDto.builder()
@@ -100,8 +100,8 @@ public class RecordService {
     }
 
     @Transactional
-    public void deletePost(Long runner_id){
-        recordRepository.deleteById(runner_id);
+    public void deletePost(Long record_id){
+        recordRepository.deleteById(record_id);
     }
 
     @Transactional

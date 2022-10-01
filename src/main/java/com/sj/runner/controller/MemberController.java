@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -74,8 +75,10 @@ public class MemberController {
         return "/denied";
     }
 
-    @GetMapping("/user/info")
-    public String dispMyInfo(){
+    @GetMapping("/user/info/{no}")
+    public String dispMyInfo(@PathVariable("no")Long id, Model model){
+        MemberDto memberDto = memberService.getInfo(id);
+        model.addAttribute("memberDto", memberDto);
         return "/myinfo";
     }
 

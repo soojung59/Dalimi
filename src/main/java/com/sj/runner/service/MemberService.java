@@ -1,8 +1,10 @@
 package com.sj.runner.service;
 
 import com.sj.runner.domain.entity.MemberEntity;
+import com.sj.runner.domain.entity.RecordEntity;
 import com.sj.runner.domain.repository.MemberRepository;
 import com.sj.runner.dto.MemberDto;
+import com.sj.runner.dto.RecordDto;
 import com.sj.runner.signuplogin.domain.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +33,22 @@ public class MemberService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
 
-        return memberRepository.save(memberDto.toEntity()).getMember_id();
+        return memberRepository.save(memberDto.toEntity()).getId();
+    }
+
+
+    @Transactional
+    public MemberDto getInfo(Long id) {
+        Optional<MemberEntity> memberEntityWrapper = memberRepository.findById(id);
+        MemberEntity memberEntity = memberEntityWrapper.get();
+        MemberDto memberDto = MemberDto.builder()
+                .id(memberEntity.getId())
+                .email(memberEntity.getEmail())
+                .nickname(memberEntity.getNickname())
+                .runningDistance(memberEntity.getRunningDistance())
+                .runningTime(memberEntity.getRunningTime())
+                .build();
+        return memberDto;
     }
 
     @Override

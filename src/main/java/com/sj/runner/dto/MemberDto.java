@@ -16,7 +16,7 @@ public class MemberDto {
     @Email(message = "이메일 형식에 맞지 않네요")
     @NotBlank(message = "이메일은 필수")
     private String email;
-    private Long member_id;
+    private Long id;
     @NotBlank(message = "닉네임 입력")
     private String nickname;
     @NotBlank(message = "비밀번호는 필수")
@@ -32,7 +32,7 @@ public class MemberDto {
 
     public MemberEntity toEntity(){
         return MemberEntity.builder()
-                .member_id(member_id)
+                .id(id)
                 .email(email)
                 .nickname(nickname)
                 .password(password)
@@ -42,8 +42,8 @@ public class MemberDto {
     }
 
     @Builder
-    public MemberDto(Long member_id, String email, String password,  String nickname, int level, int runningDistance, LocalDateTime runningTime){
-        this.member_id = member_id;
+    public MemberDto(Long id, String email, String password,  String nickname, int level, int runningDistance, LocalDateTime runningTime){
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nickname = nickname;

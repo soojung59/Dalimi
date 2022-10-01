@@ -56,7 +56,7 @@ public class RecordController {
     @GetMapping("/post/{no}")
     public String detail(@PathVariable("no")Long no, Model model)  {
         RecordDto recordDto = recordService.getPost(no);
-        model.addAttribute("runnerDto", recordDto);
+        model.addAttribute("recordDto", recordDto);
         return "detail.html";
     }
 

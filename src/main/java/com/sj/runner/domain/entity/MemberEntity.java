@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -15,8 +16,12 @@ import java.time.LocalDateTime;
 @Table(name = "member")
 public class MemberEntity extends TimeEntity {
     @Id
+    @Column(name = "member_id")
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long member_id;
+    private Long id;
+
+    @OneToMany(mappedBy = "member")
+    private List<RecordEntity> record;
 
     @Column(length = 20, nullable = false)
     private String email;
@@ -39,8 +44,8 @@ public class MemberEntity extends TimeEntity {
 
 
     @Builder
-    public MemberEntity(Long member_id, String email, String password, String nickname, int level, int runningDistance, LocalDateTime runningTime){
-        this.member_id = member_id;
+    public MemberEntity(Long id, String email, String password, String nickname, int level, int runningDistance, LocalDateTime runningTime){
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
