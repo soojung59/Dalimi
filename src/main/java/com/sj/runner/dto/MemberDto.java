@@ -51,4 +51,5 @@ public class MemberDto {
         this.runningDistance = runningDistance;
         this.runningTime = runningTime;
     }
+
 }

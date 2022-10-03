@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<!-- HEADER -->
+<div th:insert="common/header.html" id="header"></div>
 <body>
 <form th:action = "@{'/post/edit/' + ${recordDto.runner_id}}" method="post">
     <input type = "hidden" name ="_method"  value="put"/>

@@ -1,8 +1,10 @@
 package com.sj.runner.controller;
 
 import com.sj.runner.dto.GalleryDto;
+import com.sj.runner.dto.MemberDto;
 import com.sj.runner.dto.RecordDto;
 import com.sj.runner.service.GalleryService;
+import com.sj.runner.service.MemberService;
 import com.sj.runner.service.RecordService;
 import com.sj.runner.service.S3Service;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class RecordController {
     private final RecordService recordService;
     private final S3Service s3Service;
     private final GalleryService galleryService;
+    private final MemberService memberService;
 
     @GetMapping("/photo")
     public String dispWrite(Model model){
@@ -28,7 +32,7 @@ public class RecordController {
 
         model.addAttribute("galleryList", galleryDtoList);
 
-        return "/photo" ;
+        return "record/photo" ;
     }
     @PostMapping("/write")
     public String execWrite(RecordDto recordDto,GalleryDto galleryDto, MultipartFile file) throws IOException {
@@ -43,12 +47,14 @@ public class RecordController {
 
 
     @GetMapping("/post")
-    public String write(){
-        return "write.html";
+    public String write(Principal principal,Model model){
+        MemberDto memberDto = memberService.getInfo(principal.getName());
+        model.addAttribute("memberDto", memberDto);
+        return "record/write.html";
     }
 
     @PostMapping("/post")
-    public String write(RecordDto recordDto){
+    public String write(RecordDto recordDto, Model model){
         recordService.savePost(recordDto);
         return  "redirect:/";
     }
@@ -57,7 +63,7 @@ public class RecordController {
     public String detail(@PathVariable("no")Long no, Model model)  {
         RecordDto recordDto = recordService.getPost(no);
         model.addAttribute("recordDto", recordDto);
-        return "detail.html";
+        return "record/detail.html";
     }
 
     @GetMapping("/post/edit/{no}")
@@ -65,7 +71,7 @@ public class RecordController {
         RecordDto recordDto = recordService.getPost(no);
 
         model.addAttribute("runnerDto", recordDto);
-        return "update.html";
+        return "record/update.html";
     }
 
     @PutMapping("/post/edit/{no}")
@@ -95,7 +101,7 @@ public class RecordController {
         List<RecordDto> recordDtoList = recordService.searchPosts(keyword);
 
         model.addAttribute("runnerList", recordDtoList);
-        return "list.html";
+        return "record/list.html";
     }
 
 }

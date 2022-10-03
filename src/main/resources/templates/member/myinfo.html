@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- HEADER -->
+<div th:insert="common/header.html" id="header"></div>
+<body>
+<h1>[[${memberDto.nickname}]] 님의 정보</h1>
+<h3 th:text = "'현재 레벨은 '+${memberDto.level} +'이예요. '"></h3>
+<p th:text = "'현재 '+ ${memberDto.nickname} +'님이 달린 거리는' + ${memberDto.runningTime} +' km 네요'"></p>
+<form th:action="@{/user/update/}">
+<input type = submit  value="수정">
+</form>
+</body>
+</html>

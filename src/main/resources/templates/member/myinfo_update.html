@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div th:insert="common/header.html" id="header"></div>
+<body>
+<form th:action = "@{/user/update}" method="post">
+    id: <input type="text" name ="id" th:value="${memberDto.id}"  readonly ><br>
+    email: <input type="text" name ="email" th:value="${memberDto.email}" readonly><br>
+nickname: <input type="text" name ="nickname" th:value="${memberDto.nickname}"><br>
+password: <input type="password" name="pwd" th:value="${memberDto.password}" ><br>
+    <button>수정하기</button>
+</form>
+</body>
+</html>

@@ -2,8 +2,10 @@ package com.sj.runner.signuplogin.config;
 
 import com.sj.runner.service.MemberService;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,20 +32,21 @@ public class SecurityConfig  {
     }
 
     @Bean
+    @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/myinfo").hasRole("MEMBER")
+                .antMatchers("/user/**").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
-            .and()
+                .and()
                 .formLogin()
                 .loginPage("/user/login")
-                .defaultSuccessUrl("/user/login/result")
-                .permitAll()
-            .and()
+                .loginProcessingUrl("/user/login")
+                .defaultSuccessUrl("/user/login/result").permitAll()
+                .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/user/logout/result")
+                .logoutSuccessUrl("/user/logout/result").permitAll()
                 .invalidateHttpSession(true)
             .and()
                 .exceptionHandling().accessDeniedPage("/user/denied");

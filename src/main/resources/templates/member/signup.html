@@ -7,14 +7,14 @@
 <body>
 <h1>회원 가입</h1>
 <hr>
-
-<form th:action="@{/user/signup}" method="post" modelAttribute="memberDto">
+<!--<div th:insert="common/header.html" id="header"></div>-->
+<form th:action="@{/signup}" method="post" >
     <div>
-         <input type="text" name="email" th:value="${memberDto.email}" placeholder="이메일을 입력" >
+         <input type="text" name="email"  placeholder="이메일을 입력" >
         <span th:text="${valid_email}"></span>
     </div>
     <div>
-        <input type="text" name="nickname" th:value="${memberDto.nickname}" placeholder="닉네임을 입력" >
+        <input type="text" name="nickname"  placeholder="닉네임을 입력" >
       <span th:text="${valid_nickname}"></span>
     </div>
     <div>

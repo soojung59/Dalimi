@@ -32,14 +32,12 @@ public class MemberService implements UserDetailsService {
     public Long joinUser(MemberDto memberDto){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
-
         return memberRepository.save(memberDto.toEntity()).getId();
     }
 
-
     @Transactional
-    public MemberDto getInfo(Long id) {
-        Optional<MemberEntity> memberEntityWrapper = memberRepository.findById(id);
+    public MemberDto getInfo(String email) {
+        Optional<MemberEntity> memberEntityWrapper = memberRepository.findByEmail(email);
         MemberEntity memberEntity = memberEntityWrapper.get();
         MemberDto memberDto = MemberDto.builder()
                 .id(memberEntity.getId())
@@ -50,7 +48,6 @@ public class MemberService implements UserDetailsService {
                 .build();
         return memberDto;
     }
-
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         Optional<MemberEntity> userEntityWrapper = memberRepository.findByEmail(userEmail);
