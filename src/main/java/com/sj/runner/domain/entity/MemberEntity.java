@@ -23,9 +23,6 @@ public class MemberEntity extends TimeEntity {
     @OneToMany(mappedBy = "member")
     private List<RecordEntity> record;
 
-    @OneToMany(mappedBy = "bookmark")
-    private List<BookmarkEntity> bookmark;
-
     @Column(length = 20, nullable = false)
     private String email;
 

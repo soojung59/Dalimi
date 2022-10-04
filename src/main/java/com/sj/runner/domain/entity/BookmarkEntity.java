@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -25,9 +26,9 @@ public class BookmarkEntity extends TimeEntity {
     @JoinColumn
     private RecordEntity record;
 
+
     @Builder
-    public BookmarkEntity(Long id, MemberEntity member){
+    public BookmarkEntity(Long id, BookmarkEntity book){
         this.id= id;
-        this.member = member;
     }
 }

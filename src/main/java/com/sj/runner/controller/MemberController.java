@@ -41,8 +41,7 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String execSignup(@Valid MemberDto memberDto, Errors errors, Model model){
-        log.info("te2");
+    public String execSignup(@Valid MemberDto memberDto, Errors errors, Model model, @RequestParam("password")String pw, String password2){
         if(errors.hasErrors()){
             model.addAttribute("memberDto", memberDto);
             Map<String, String> validatorResult = memberService.validateHandling(errors);
@@ -51,7 +50,14 @@ public class MemberController {
             }
             return "member/signup";
         }
-        memberService.joinUser(memberDto);
+        if(password2.equals(pw)){
+            model.addAttribute("msg","비밀번호 일치");
+            log.info("success");
+            return "user/login";
+        }else{
+            memberService.joinUser(memberDto);
+
+        }
         return "user/login";
     }
 

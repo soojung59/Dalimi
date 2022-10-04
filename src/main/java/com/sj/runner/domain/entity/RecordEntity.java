@@ -21,6 +21,11 @@ public class RecordEntity extends TimeEntity{
     @JoinColumn
     private MemberEntity member;
 
+    @ManyToOne
+    @JoinColumn
+    private BookmarkEntity book;
+
+
     @Column(length = 10, nullable = false)
     private Long start_latitude;
 
@@ -50,8 +55,9 @@ public class RecordEntity extends TimeEntity{
 
 
     @Builder
-    public RecordEntity(Long record_id, MemberEntity member, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
+    public RecordEntity(Long record_id, BookmarkEntity book,MemberEntity member, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
         this.record_id = record_id;
+        this.book = book;
         this.member = member;
         this.start_latitude = start_latitude;
         this.start_hardness = start_hardness;
