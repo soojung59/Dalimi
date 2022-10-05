@@ -3,6 +3,7 @@ package com.sj.runner.dto;
 import com.sj.runner.domain.entity.MemberEntity;
 import lombok.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -22,6 +23,7 @@ public class MemberDto {
     @NotBlank(message = "비밀번호는 필수")
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*.\\W)(?=\\S+$).{8,20}",message = "영문 대,소문자, 숫자, 특수기호 포함 8~20글자")
     private String password;
+
 
     private int level;
     private int runningDistance;
