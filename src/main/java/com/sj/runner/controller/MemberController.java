@@ -40,26 +40,24 @@ public class MemberController {
         return "member/signup";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signup") //
     public String execSignup(@Valid MemberDto memberDto, Errors errors, Model model, @RequestParam("password")String pw, String password2){
-        if(errors.hasErrors()){
+        if(errors.hasErrors()) {
             model.addAttribute("memberDto", memberDto);
             Map<String, String> validatorResult = memberService.validateHandling(errors);
-            for(String key: validatorResult.keySet()){
-                model.addAttribute(key,validatorResult.get(key));
+            for (String key : validatorResult.keySet()) {
+                model.addAttribute(key, validatorResult.get(key));
             }
             return "member/signup";
         }
-        if(password2.equals(pw)){
-            model.addAttribute("msg","비밀번호 일치");
-            log.info("success");
-            return "user/login";
-        }else{
-            memberService.joinUser(memberDto);
-
+            if(password2.equals(pw)){
+                memberService.joinUser(memberDto);
+                return "member/login";
+            }else{
+                model.addAttribute("msg","비밀번호 불일치");
+                return "member/signup";
+            }
         }
-        return "user/login";
-    }
 
     @GetMapping("/user/login")
     public String dispLogin(){
@@ -96,14 +94,14 @@ public class MemberController {
 
     @PostMapping("/user/update")
     public String updateMyInfo( MemberDto memberDto){
-        memberService.joinUser(memberDto);
+        memberService.updateUser(memberDto);
         return "redirect:/user/info";
     }
 
-    @PostMapping("/user/delete")
-    public String deleteUser(MemberDto memberDto){
-//        memberService.deleteUser(memberDto);
-        return "/";
+    @GetMapping("/user/delete/{no}")
+    public String deleteUser(@PathVariable("no") Long id){
+        memberService.deleteUser(id);
+        return "redirect:/";
     }
 
     @GetMapping("/admin")

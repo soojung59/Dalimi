@@ -13,5 +13,9 @@
 <form th:action="@{/user/update/}">
 <input type = submit  value="수정">
 </form>
+
+<form th:action="@{'/user/delete/' + ${memberDto.id}}">
+    <input type = submit  value="탈퇴">
+</form>
 </body>
 </html>

@@ -9,6 +9,7 @@ import com.sj.runner.signuplogin.domain.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -34,6 +35,20 @@ public class MemberService implements UserDetailsService {
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
         return memberRepository.save(memberDto.toEntity()).getId();
     }
+
+    @Transactional
+    public Long updateUser(MemberDto memberDto){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
+        return memberRepository.save(memberDto.toEntity()).getId();
+    }
+    @Transactional
+    public void deleteUser(Long id){
+//        MemberEntity user = memberRepository.findById(memberDto.getId()).orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+        memberRepository.deleteById(id);
+        SecurityContextHolder.clearContext();
+    }
+
 
     @Transactional
     public MemberDto getInfo(String email) {
