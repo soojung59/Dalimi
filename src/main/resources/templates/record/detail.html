@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,6 +15,14 @@
 <p th:text = "${recordDto.time}"></p>
 <p th:text = "${recordDto.memo}"></p>
 
+<div th:if="${memberDto.id}">
+    <form id = "bookmark" th:action ="@{'/user/bookmark'}" method="post">
+        <input type="hidden" th:value="${memberDto.id}" name="memberid">
+        <input type="hidden" th:value="${recordDto.record_id}" name="recordid">
+    <button >북마크</button>
+  </form>
+
+</div>
 
 <div>
   <a th:href="@{'/post/edit/' + ${recordDto.record_id}}">

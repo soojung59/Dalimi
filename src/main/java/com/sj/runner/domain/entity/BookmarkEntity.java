@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 @Table(name = "bookmark")
-public class BookmarkEntity extends TimeEntity {
+public class BookmarkEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +28,11 @@ public class BookmarkEntity extends TimeEntity {
     @JoinColumn
     private RecordEntity record;
 
+    private LocalDateTime createDate;
 
     @Builder
-    public BookmarkEntity(Long id, BookmarkEntity book){
+    public BookmarkEntity(Long id, BookmarkEntity book, LocalDateTime createDate){
         this.id= id;
+        this.createDate = createDate;
     }
 }

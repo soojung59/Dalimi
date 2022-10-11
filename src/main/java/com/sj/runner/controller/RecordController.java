@@ -60,9 +60,13 @@ public class RecordController {
     }
 
     @GetMapping("/post/{no}")
-    public String detail(@PathVariable("no")Long no, Model model)  {
+    public String detail(@PathVariable("no")Long no,MemberDto memberDto, Model model ,Principal principal)  {
         RecordDto recordDto = recordService.getPost(no);
+        if(principal != null){
+            memberDto = memberService.getInfo(principal.getName());
+        }
         model.addAttribute("recordDto", recordDto);
+        model.addAttribute("memberDto", memberDto);
         return "record/detail.html";
     }
 
