@@ -1,12 +1,10 @@
 package com.sj.runner.controller;
 
+import com.sj.runner.dto.BookmarkDto;
 import com.sj.runner.dto.GalleryDto;
 import com.sj.runner.dto.MemberDto;
 import com.sj.runner.dto.RecordDto;
-import com.sj.runner.service.GalleryService;
-import com.sj.runner.service.MemberService;
-import com.sj.runner.service.RecordService;
-import com.sj.runner.service.S3Service;
+import com.sj.runner.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +23,7 @@ public class RecordController {
     private final S3Service s3Service;
     private final GalleryService galleryService;
     private final MemberService memberService;
+    private final BookmarkService bookmarkService;
 
     @GetMapping("/photo")
     public String dispWrite(Model model){
@@ -60,11 +59,14 @@ public class RecordController {
     }
 
     @GetMapping("/post/{no}")
-    public String detail(@PathVariable("no")Long no,MemberDto memberDto, Model model ,Principal principal)  {
+    public String detail(@PathVariable("no")Long no,BookmarkDto bookmarkDto,MemberDto memberDto, Model model ,Principal principal)  {
         RecordDto recordDto = recordService.getPost(no);
         if(principal != null){
             memberDto = memberService.getInfo(principal.getName());
         }
+//        if(bookmarkService.checkBookmark(no,memberDto.getId()) == true){
+//            model.addAttribute("book", bookmarkDto);
+//        }
         model.addAttribute("recordDto", recordDto);
         model.addAttribute("memberDto", memberDto);
         return "record/detail.html";

@@ -16,12 +16,13 @@
 <p th:text = "${recordDto.memo}"></p>
 
 <div th:if="${memberDto.id}">
-    <form id = "bookmark" th:action ="@{'/user/bookmark'}" method="post">
-        <input type="hidden" th:value="${memberDto.id}" name="memberid">
-        <input type="hidden" th:value="${recordDto.record_id}" name="recordid">
+    <form action ="/user/bookmark" method="post" target="iframe1">
+        <input type="text" th:value="${memberDto.id}" name="member">
+        <input type="text" th:value="${recordDto.record_id}" name="record">
     <button >북마크</button>
   </form>
 
+    <iframe id="iframe1" name="iframe1" style="display:none"></iframe>
 </div>
 
 <div>

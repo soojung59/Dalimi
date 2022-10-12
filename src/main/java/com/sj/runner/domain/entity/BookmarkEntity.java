@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +16,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "bookmark")
-public class BookmarkEntity {
+public class BookmarkEntity extends CreateEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +30,11 @@ public class BookmarkEntity {
     @JoinColumn
     private RecordEntity record;
 
-    private LocalDateTime createDate;
 
     @Builder
-    public BookmarkEntity(Long id, BookmarkEntity book, LocalDateTime createDate){
+    public BookmarkEntity(Long id, RecordEntity record,MemberEntity member, LocalDateTime createDate){
         this.id= id;
-        this.createDate = createDate;
+        this.member = member;
+        this.record = record;
     }
 }
