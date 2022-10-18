@@ -17,8 +17,8 @@
 
 <div th:if="${memberDto.id}">
     <form action ="/user/bookmark" method="post" target="iframe1">
-        <input type="text" th:value="${memberDto.id}" name="member">
-        <input type="text" th:value="${recordDto.record_id}" name="record">
+       member id:  <input type="text" th:value="${memberDto.id}" name="member"><br>
+        record id :<input type="text" th:value="${recordDto.record_id}" name="record">
     <button >북마크</button>
   </form>
 
@@ -36,12 +36,12 @@
   </form>
 </div>
 
-<script th:inline = "javascript">
+<!--<script th:inline = "javascript">
   /*<![CDATA[*/
   var recordDto = /*[[${recordDto}]]*/ "";
   /*]]>*/
 </script>
 
-<script th:inline ="javascript" th:src = "@{/js/runner.js}"></script>
+<script th:inline ="javascript" th:src = "@{/js/runner.js}"></script>-->
 </body>
 </html>

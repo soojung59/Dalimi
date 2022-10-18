@@ -71,7 +71,6 @@ public class RecordController {
         model.addAttribute("memberDto", memberDto);
         return "record/detail.html";
     }
-
     @GetMapping("/post/edit/{no}")
     public String edit(@PathVariable("no") Long no, Model model){
         RecordDto recordDto = recordService.getPost(no);

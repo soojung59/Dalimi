@@ -20,14 +20,15 @@ public class BookmarkEntity extends CreateEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bookamrk_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "member_id")
     private MemberEntity member;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "record_record_id")
     private RecordEntity record;
 
 
