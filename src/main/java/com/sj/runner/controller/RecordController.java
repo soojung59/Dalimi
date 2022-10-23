@@ -6,6 +6,7 @@ import com.sj.runner.dto.MemberDto;
 import com.sj.runner.dto.RecordDto;
 import com.sj.runner.service.*;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +60,7 @@ public class RecordController {
     }
 
     @GetMapping("/post/{no}")
-    public String detail(@PathVariable("no")Long no,BookmarkDto bookmarkDto,MemberDto memberDto, Model model ,Principal principal)  {
+    public String detail(@PathVariable("no")Long no, MemberDto memberDto, Model model , Principal principal)  {
         RecordDto recordDto = recordService.getPost(no);
         if(principal != null){
             memberDto = memberService.getInfo(principal.getName());

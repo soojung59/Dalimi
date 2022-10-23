@@ -1,12 +1,10 @@
 package com.sj.runner.domain.entity;
 
-import com.sj.runner.dto.MemberDto;
 import lombok.*;
 
 import javax.persistence.*;
-import java.lang.reflect.Member;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Table(name = "record")
@@ -17,13 +15,12 @@ public class RecordEntity extends TimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long record_id;
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
     private MemberEntity member;
+    private int viewCount;
 
-    @ManyToOne
-    @JoinColumn
-    private BookmarkEntity book;
+    @OneToMany(mappedBy = "record", cascade = CascadeType.ALL)
+    Set<BookmarkEntity> bookmark = new HashSet<>();
 
 
     @Column(length = 10, nullable = false)
@@ -55,9 +52,8 @@ public class RecordEntity extends TimeEntity{
 
 
     @Builder
-    public RecordEntity(Long record_id, BookmarkEntity book,MemberEntity member, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
+    public RecordEntity(Long record_id, MemberEntity member, Long start_latitude, Long start_hardness, Long arrival_latitude, Long arrival_hardness, String time, String memo, int level , int heart , int view){
         this.record_id = record_id;
-        this.book = book;
         this.member = member;
         this.start_latitude = start_latitude;
         this.start_hardness = start_hardness;

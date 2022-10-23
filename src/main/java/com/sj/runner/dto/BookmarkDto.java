@@ -19,14 +19,12 @@ public class BookmarkDto {
 
     public BookmarkEntity toEntity(){
         return BookmarkEntity.builder()
-                .id(id)
                 .record(record)
                 .member(member)
                 .build();
     }
     @Builder
-    public BookmarkDto(Long id,RecordEntity record,MemberEntity member, LocalDateTime createDate){
-        this.id= id;
+    public BookmarkDto(RecordEntity record,MemberEntity member){
         this.member = member;
         this.record = record;
     }
