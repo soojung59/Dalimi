@@ -2,11 +2,13 @@ plugins {
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id 'java'
+	id "com.moowork.node" version "1.3.1"
 }
 
 group = 'com.sj'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+apply plugin: "com.moowork.node"
 
 configurations {
 	compileOnly {
@@ -48,7 +50,21 @@ dependencies {
 
 
 }
+def webappDir = "$projectDir/src/main/front"
+
+task appNpmInstall(type: NpmTask) {
+	workingDir = file("${webappDir}")
+	args = ["run", "build"]
+}
+
+task copyWebApp(type: Copy) {
+	from 'src/main/front/build'
+	into "build/resources/main/static"
+}
+
+copyWebApp.dependsOn(appNpmInstall)
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
