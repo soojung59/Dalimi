@@ -20,17 +20,21 @@ public class BookmarkEntity extends CreateEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bookamrk_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "member_id")
     private MemberEntity member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "record_record_id")
     private RecordEntity record;
 
 
     @Builder
-    public BookmarkEntity(RecordEntity record,MemberEntity member){
+    public BookmarkEntity(Long id, RecordEntity record,MemberEntity member, LocalDateTime createDate){
+        this.id= id;
         this.member = member;
         this.record = record;
     }

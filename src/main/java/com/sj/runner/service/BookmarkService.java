@@ -1,11 +1,8 @@
 package com.sj.runner.service;
 
 import com.sj.runner.domain.entity.BookmarkEntity;
-import com.sj.runner.domain.entity.MemberEntity;
-import com.sj.runner.domain.entity.RecordEntity;
 import com.sj.runner.domain.repository.BookmarkRepository;
 import com.sj.runner.domain.repository.MemberRepository;
-import com.sj.runner.domain.repository.RecordRepository;
 import com.sj.runner.dto.BookmarkDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,19 +14,15 @@ import java.util.Optional;
 @Service
 public class BookmarkService {
     private final BookmarkRepository bookmarkRepository;
-    private final RecordRepository recordRepository;
 
-    public boolean addBookmark(MemberEntity member, Long recordId){
-        RecordEntity record = recordRepository.findById(recordId).orElseThrow();
+    public void saveBookmark(BookmarkDto bookmarkDto) {
+        bookmarkRepository.save(bookmarkDto.toEntity());
 
-        if(isNotAlreadBookmark(member,recordId)){
-            bookmarkRepository.save(new BookmarkEntity(record, member));
-            return true;
-        }
-        return false;
     }
-    public boolean isNotAlreadBookmark(MemberEntity member, Long record){
-        return bookmarkRepository.findByMemberAndRecord(member,record).isEmpty();
+
+    public void deleteBookmark(BookmarkDto bookmarkDto) {
+        bookmarkRepository.delete(bookmarkDto.toEntity());
+
     }
 }
 
